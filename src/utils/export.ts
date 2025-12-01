@@ -14,7 +14,20 @@ const defaultConfig: AvatarConfig = {
 };
 
 /**
- * Generate full SVG string from avatar config
+ * Generates the complete SVG markup string for an avatar.
+ * Works in both browser and Node.js environments.
+ *
+ * @param config - Partial avatar configuration (missing values use defaults)
+ * @param size - Width and height of the SVG in pixels (default: 474)
+ * @returns Complete SVG markup as a string
+ *
+ * @example
+ * ```ts
+ * import { generateSvg } from 'chipmunk-avatars';
+ *
+ * const svg = generateSvg({ background: 'mintGreen', expression: 'happy' });
+ * document.getElementById('container').innerHTML = svg;
+ * ```
  */
 export function generateSvg(config: Partial<AvatarConfig> = {}, size: number = 474): string {
   const merged = { ...defaultConfig, ...config };
@@ -29,7 +42,8 @@ export function generateSvg(config: Partial<AvatarConfig> = {}, size: number = 4
 }
 
 /**
- * Universal base64 encoding that works in browser and Node.js
+ * Universal base64 encoding that works in browser and Node.js.
+ * @internal
  */
 function toBase64(str: string): string {
   // Works in browser and modern Node.js (v16+)
@@ -41,7 +55,22 @@ function toBase64(str: string): string {
 }
 
 /**
- * Generate base64 data URL from avatar config
+ * Generates a base64-encoded SVG data URL for an avatar.
+ * Works in both browser and Node.js environments.
+ * Useful for setting as `src` on img elements or for embedding.
+ *
+ * @param config - Partial avatar configuration (missing values use defaults)
+ * @param size - Width and height of the SVG in pixels (default: 474)
+ * @returns Base64 data URL string (e.g., `data:image/svg+xml;base64,...`)
+ *
+ * @example
+ * ```ts
+ * import { generateBase64 } from 'chipmunk-avatars';
+ *
+ * const dataUrl = generateBase64({ expression: 'happy' });
+ * const img = document.createElement('img');
+ * img.src = dataUrl;
+ * ```
  */
 export function generateBase64(config: Partial<AvatarConfig> = {}, size: number = 474): string {
   const svg = generateSvg(config, size);
@@ -49,7 +78,22 @@ export function generateBase64(config: Partial<AvatarConfig> = {}, size: number 
 }
 
 /**
- * Generate PNG base64 data URL from avatar config (browser only)
+ * Generates a PNG image as a base64 data URL from an avatar configuration.
+ * **Browser only** - uses Canvas API for rendering.
+ *
+ * @param config - Partial avatar configuration (missing values use defaults)
+ * @param size - Width and height of the PNG in pixels (default: 474)
+ * @returns Promise resolving to a PNG data URL string
+ * @throws Error if called in a non-browser environment
+ *
+ * @example
+ * ```ts
+ * import { generatePngBase64 } from 'chipmunk-avatars';
+ *
+ * const pngDataUrl = await generatePngBase64({ hair: 'spaceBuns' }, 256);
+ * const img = document.createElement('img');
+ * img.src = pngDataUrl;
+ * ```
  */
 export async function generatePngBase64(
   config: Partial<AvatarConfig> = {},
@@ -87,7 +131,23 @@ export async function generatePngBase64(
 }
 
 /**
- * Download avatar as SVG file (browser only)
+ * Downloads the avatar as an SVG file.
+ * **Browser only** - triggers a file download in the browser.
+ *
+ * @param config - Partial avatar configuration (missing values use defaults)
+ * @param filename - Name for the downloaded file (default: 'avatar.svg')
+ * @throws Error if called in a non-browser environment
+ *
+ * @example
+ * ```ts
+ * import { downloadSvg } from 'chipmunk-avatars';
+ *
+ * // Download with default filename
+ * downloadSvg({ background: 'mintGreen' });
+ *
+ * // Download with custom filename
+ * downloadSvg({ background: 'mintGreen' }, 'my-avatar.svg');
+ * ```
  */
 export function downloadSvg(config: Partial<AvatarConfig> = {}, filename: string = 'avatar.svg'): void {
   if (typeof window === 'undefined') {
@@ -108,7 +168,24 @@ export function downloadSvg(config: Partial<AvatarConfig> = {}, filename: string
 }
 
 /**
- * Download avatar as PNG file (browser only)
+ * Downloads the avatar as a PNG file.
+ * **Browser only** - uses Canvas API and triggers a file download.
+ *
+ * @param config - Partial avatar configuration (missing values use defaults)
+ * @param size - Width and height of the PNG in pixels (default: 474)
+ * @param filename - Name for the downloaded file (default: 'avatar.png')
+ * @throws Error if called in a non-browser environment
+ *
+ * @example
+ * ```ts
+ * import { downloadPng } from 'chipmunk-avatars';
+ *
+ * // Download with defaults
+ * await downloadPng({ expression: 'happy' });
+ *
+ * // Download with custom size and filename
+ * await downloadPng({ expression: 'happy' }, 512, 'my-avatar.png');
+ * ```
  */
 export async function downloadPng(
   config: Partial<AvatarConfig> = {},

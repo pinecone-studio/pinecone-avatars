@@ -5,7 +5,16 @@ import { tshirtComponents } from './svg/tshirt';
 import { expressionComponents } from './svg/expression';
 import { hairComponents } from './svg/hair';
 
-const defaultConfig: AvatarConfig = {
+/**
+ * Default avatar configuration used when no props are provided.
+ *
+ * @example
+ * ```tsx
+ * import { defaultConfig } from 'chipmunk-avatars';
+ * console.log(defaultConfig.background); // 'babyBlue'
+ * ```
+ */
+export const defaultConfig: AvatarConfig = {
   background: 'babyBlue',
   skin: 'softPeach',
   tshirt: 'orange',
@@ -13,6 +22,35 @@ const defaultConfig: AvatarConfig = {
   hair: 'shortBuzz'
 };
 
+/**
+ * Renders a customizable chipmunk avatar as an SVG element.
+ *
+ * @param props - Avatar configuration and styling options
+ * @param props.size - Size of the avatar in pixels (default: 200)
+ * @param props.background - Background color (default: 'babyBlue')
+ * @param props.skin - Skin tone (default: 'softPeach')
+ * @param props.tshirt - T-shirt color (default: 'orange')
+ * @param props.expression - Facial expression (default: 'happy')
+ * @param props.hair - Hairstyle (default: 'shortBuzz')
+ * @param props.className - Optional CSS class name
+ * @param props.style - Optional inline styles
+ * @returns SVG element rendering the avatar
+ *
+ * @example
+ * ```tsx
+ * // Basic usage with defaults
+ * <Avatar />
+ *
+ * // Custom avatar
+ * <Avatar
+ *   size={100}
+ *   background="mintGreen"
+ *   skin="warmBrown"
+ *   expression="happy"
+ *   hair="spaceBuns"
+ * />
+ * ```
+ */
 export function Avatar({
   size = 200,
   className,
@@ -55,6 +93,20 @@ function randomItem<T>(arr: readonly T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+/**
+ * Generates a random avatar configuration with randomly selected values
+ * for all attributes (background, skin, tshirt, expression, hair).
+ *
+ * @returns A complete AvatarConfig with random values
+ *
+ * @example
+ * ```tsx
+ * import { Avatar, generateRandomConfig } from 'chipmunk-avatars';
+ *
+ * const randomAvatar = generateRandomConfig();
+ * <Avatar {...randomAvatar} />
+ * ```
+ */
 export function generateRandomConfig(): AvatarConfig {
   return {
     background: randomItem(BACKGROUNDS),
@@ -64,5 +116,3 @@ export function generateRandomConfig(): AvatarConfig {
     hair: randomItem(HAIRS)
   };
 }
-
-export { defaultConfig };

@@ -130,6 +130,26 @@ function CategorySelector<T extends string>({
   );
 }
 
+/**
+ * An interactive UI component for customizing avatar appearance.
+ * Provides controls for selecting background, skin, t-shirt, expression, and hair.
+ * Supports both controlled and uncontrolled modes.
+ *
+ * @param props - Picker configuration options
+ * @param props.value - Current avatar configuration (for controlled mode)
+ * @param props.onChange - Callback fired when any avatar attribute changes
+ * @param props.className - Optional CSS class name for the container
+ *
+ * @example
+ * ```tsx
+ * // Controlled mode
+ * const [config, setConfig] = useState<AvatarConfig>();
+ * <AvatarPicker value={config} onChange={setConfig} />
+ *
+ * // Uncontrolled mode
+ * <AvatarPicker onChange={(config) => console.log(config)} />
+ * ```
+ */
 export function AvatarPicker({
   value,
   onChange,
