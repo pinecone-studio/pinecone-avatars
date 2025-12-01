@@ -1,6 +1,6 @@
 {
   "name": "pinecone-avatars",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A customizable React avatar picker library with 60+ unique combinations",
   "type": "module",
   "main": "dist/index.cjs",
@@ -39,13 +39,13 @@
   ],
   "author": "",
   "license": "MIT",
-  "homepage": "https://github.com/yourusername/pinecone-avatars#readme",
+  "homepage": "https://github.com/temuulennibno/pinecone-avatars#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/pinecone-avatars.git"
+    "url": "git+https://github.com/temuulennibno/pinecone-avatars.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/pinecone-avatars/issues"
+    "url": "https://github.com/temuulennibno/pinecone-avatars/issues"
   },
   "peerDependencies": {
     "react": ">=17.0.0",
