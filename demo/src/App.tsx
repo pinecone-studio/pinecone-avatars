@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Avatar,
   AvatarPicker,
@@ -9,119 +9,203 @@ import {
   downloadSvg,
   downloadPng,
 } from 'pinecone-avatars'
+import './App.css'
 
 function App() {
   const [config, setConfig] = useState<AvatarConfig>(generateRandomConfig())
-  const [activeTab, setActiveTab] = useState<'picker' | 'random' | 'export'>('picker')
+  const [randomAvatars, setRandomAvatars] = useState<AvatarConfig[]>([])
+  const [toast, setToast] = useState<string | null>(null)
+  const [copied, setCopied] = useState<string | null>(null)
+
+  useEffect(() => {
+    regenerateRandom()
+  }, [])
+
+  const regenerateRandom = () => {
+    setRandomAvatars(Array.from({ length: 12 }, () => generateRandomConfig()))
+  }
+
+  const showToast = (message: string) => {
+    setToast(message)
+    setTimeout(() => setToast(null), 2000)
+  }
 
   const handleDownloadSvg = () => {
-    downloadSvg(config, 'my-avatar.svg')
+    downloadSvg(config, 'pinecone-avatar.svg')
+    showToast('SVG downloaded!')
   }
 
   const handleDownloadPng = async () => {
-    await downloadPng(config, 512, 'my-avatar.png')
+    await downloadPng(config, 512, 'pinecone-avatar.png')
+    showToast('PNG downloaded!')
   }
 
-  const handleCopySvg = () => {
-    const svg = generateSvg(config)
-    navigator.clipboard.writeText(svg)
-    alert('SVG copied to clipboard!')
+  const handleCopy = async (type: 'svg' | 'base64' | 'config') => {
+    let content = ''
+    if (type === 'svg') content = generateSvg(config)
+    else if (type === 'base64') content = generateBase64(config)
+    else content = JSON.stringify(config, null, 2)
+
+    await navigator.clipboard.writeText(content)
+    setCopied(type)
+    showToast(`${type.toUpperCase()} copied!`)
+    setTimeout(() => setCopied(null), 1500)
   }
 
-  const handleCopyBase64 = () => {
-    const base64 = generateBase64(config)
-    navigator.clipboard.writeText(base64)
-    alert('Base64 copied to clipboard!')
+  const selectRandomAvatar = (avatarConfig: AvatarConfig) => {
+    setConfig(avatarConfig)
+    showToast('Avatar selected!')
   }
 
   return (
-    <div style={styles.container}>
-      <header style={styles.header}>
-        <h1 style={styles.title}>Pinecone Avatars</h1>
-        <p style={styles.subtitle}>A customizable React avatar picker library</p>
+    <div className="app">
+      {/* Toast */}
+      {toast && <div className="toast">{toast}</div>}
+
+      {/* Hero Section */}
+      <header className="hero">
+        <div className="hero-content">
+          <div className="hero-avatar">
+            <Avatar {...config} size={180} />
+          </div>
+          <h1 className="hero-title">Pinecone Avatars</h1>
+          <p className="hero-subtitle">
+            Beautiful, customizable SVG avatars for your React apps
+          </p>
+          <div className="hero-badges">
+            <a href="https://www.npmjs.com/package/pinecone-avatars" className="badge">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z"/>
+              </svg>
+              npm
+            </a>
+            <a href="https://github.com/temuulennibno/pinecone-avatars" className="badge">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
       </header>
 
-      <nav style={styles.tabs}>
-        <button
-          style={{ ...styles.tab, ...(activeTab === 'picker' ? styles.tabActive : {}) }}
-          onClick={() => setActiveTab('picker')}
-        >
-          Avatar Picker
-        </button>
-        <button
-          style={{ ...styles.tab, ...(activeTab === 'random' ? styles.tabActive : {}) }}
-          onClick={() => setActiveTab('random')}
-        >
-          Random Avatars
-        </button>
-        <button
-          style={{ ...styles.tab, ...(activeTab === 'export' ? styles.tabActive : {}) }}
-          onClick={() => setActiveTab('export')}
-        >
-          Export
-        </button>
-      </nav>
-
-      <main style={styles.main}>
-        {activeTab === 'picker' && (
-          <div style={styles.card}>
-            <h2 style={styles.cardTitle}>Customize Your Avatar</h2>
+      {/* Main Content */}
+      <main className="main">
+        {/* Customizer Section */}
+        <section className="section">
+          <div className="section-header">
+            <h2 className="section-title">Customize Your Avatar</h2>
+            <p className="section-desc">Mix and match to create your perfect avatar</p>
+          </div>
+          <div className="customizer-card">
             <AvatarPicker value={config} onChange={setConfig} />
           </div>
-        )}
+        </section>
 
-        {activeTab === 'random' && (
-          <div style={styles.card}>
-            <h2 style={styles.cardTitle}>Random Avatars</h2>
-            <div style={styles.randomGrid}>
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} style={styles.randomItem}>
-                  <Avatar {...generateRandomConfig()} size={100} />
-                </div>
-              ))}
-            </div>
-            <button
-              style={styles.button}
-              onClick={() => window.location.reload()}
-            >
-              Regenerate All
-            </button>
+        {/* Gallery Section */}
+        <section className="section">
+          <div className="section-header">
+            <h2 className="section-title">Random Gallery</h2>
+            <p className="section-desc">Click any avatar to select it</p>
           </div>
-        )}
+          <div className="gallery-grid">
+            {randomAvatars.map((avatarConfig, i) => (
+              <button
+                key={i}
+                className="gallery-item"
+                onClick={() => selectRandomAvatar(avatarConfig)}
+              >
+                <Avatar {...avatarConfig} size={80} />
+              </button>
+            ))}
+          </div>
+          <button className="btn btn-secondary" onClick={regenerateRandom}>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M23 4v6h-6M1 20v-6h6"/>
+              <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+            </svg>
+            Regenerate
+          </button>
+        </section>
 
-        {activeTab === 'export' && (
-          <div style={styles.card}>
-            <h2 style={styles.cardTitle}>Export Avatar</h2>
+        {/* Export Section */}
+        <section className="section">
+          <div className="section-header">
+            <h2 className="section-title">Export & Use</h2>
+            <p className="section-desc">Download or copy your avatar</p>
+          </div>
 
-            <div style={styles.exportPreview}>
-              <Avatar {...config} size={200} />
+          <div className="export-card">
+            <div className="export-preview">
+              <Avatar {...config} size={160} />
             </div>
 
-            <div style={styles.exportButtons}>
-              <button style={styles.button} onClick={handleDownloadSvg}>
-                Download SVG
-              </button>
-              <button style={styles.button} onClick={handleDownloadPng}>
-                Download PNG
-              </button>
-              <button style={styles.buttonSecondary} onClick={handleCopySvg}>
-                Copy SVG
-              </button>
-              <button style={styles.buttonSecondary} onClick={handleCopyBase64}>
-                Copy Base64
-              </button>
+            <div className="export-actions">
+              <div className="action-group">
+                <span className="action-label">Download</span>
+                <div className="action-buttons">
+                  <button className="btn btn-primary" onClick={handleDownloadSvg}>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    SVG
+                  </button>
+                  <button className="btn btn-primary" onClick={handleDownloadPng}>
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    PNG
+                  </button>
+                </div>
+              </div>
+
+              <div className="action-group">
+                <span className="action-label">Copy to clipboard</span>
+                <div className="action-buttons">
+                  <button
+                    className={`btn btn-outline ${copied === 'svg' ? 'copied' : ''}`}
+                    onClick={() => handleCopy('svg')}
+                  >
+                    {copied === 'svg' ? 'Copied!' : 'SVG Code'}
+                  </button>
+                  <button
+                    className={`btn btn-outline ${copied === 'base64' ? 'copied' : ''}`}
+                    onClick={() => handleCopy('base64')}
+                  >
+                    {copied === 'base64' ? 'Copied!' : 'Base64'}
+                  </button>
+                  <button
+                    className={`btn btn-outline ${copied === 'config' ? 'copied' : ''}`}
+                    onClick={() => handleCopy('config')}
+                  >
+                    {copied === 'config' ? 'Copied!' : 'Config'}
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <div style={styles.codeSection}>
-              <h3 style={styles.codeTitle}>Current Config:</h3>
-              <pre style={styles.code}>
-                {JSON.stringify(config, null, 2)}
-              </pre>
-            </div>
-
-            <div style={styles.codeSection}>
-              <h3 style={styles.codeTitle}>Usage:</h3>
-              <pre style={styles.code}>
+            <div className="code-block">
+              <div className="code-header">
+                <span>React Usage</span>
+                <button
+                  className="code-copy"
+                  onClick={() => {
+                    const code = `<Avatar
+  background="${config.background}"
+  skin="${config.skin}"
+  tshirt="${config.tshirt}"
+  expression="${config.expression}"
+  hair="${config.hair}"
+  size={200}
+/>`
+                    navigator.clipboard.writeText(code)
+                    showToast('Code copied!')
+                  }}
+                >
+                  Copy
+                </button>
+              </div>
+              <pre className="code-content">
 {`import { Avatar } from 'pinecone-avatars';
 
 <Avatar
@@ -135,158 +219,44 @@ function App() {
               </pre>
             </div>
           </div>
-        )}
+        </section>
+
+        {/* Install Section */}
+        <section className="section install-section">
+          <div className="section-header">
+            <h2 className="section-title">Get Started</h2>
+            <p className="section-desc">Install with your favorite package manager</p>
+          </div>
+
+          <div className="install-options">
+            <div className="install-option">
+              <code>npm install pinecone-avatars</code>
+            </div>
+            <div className="install-option">
+              <code>yarn add pinecone-avatars</code>
+            </div>
+            <div className="install-option">
+              <code>pnpm add pinecone-avatars</code>
+            </div>
+            <div className="install-option">
+              <code>bun add pinecone-avatars</code>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <footer style={styles.footer}>
+      {/* Footer */}
+      <footer className="footer">
         <p>
-          Made with Pinecone Avatars |
-          <a href="https://github.com/yourusername/pinecone-avatars" style={styles.link}> GitHub</a> |
-          <a href="https://www.npmjs.com/package/pinecone-avatars" style={styles.link}> npm</a>
+          Built with React & TypeScript
+          <span className="footer-sep">•</span>
+          <a href="https://github.com/temuulennibno/pinecone-avatars">View on GitHub</a>
+          <span className="footer-sep">•</span>
+          <a href="https://www.npmjs.com/package/pinecone-avatars">npm Package</a>
         </p>
       </footer>
     </div>
   )
-}
-
-const styles: Record<string, React.CSSProperties> = {
-  container: {
-    minHeight: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  header: {
-    textAlign: 'center',
-    padding: '40px 20px',
-    color: '#fff',
-  },
-  title: {
-    fontSize: '2.5rem',
-    fontWeight: 700,
-    marginBottom: '8px',
-  },
-  subtitle: {
-    fontSize: '1.1rem',
-    opacity: 0.9,
-  },
-  tabs: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '8px',
-    padding: '0 20px',
-    flexWrap: 'wrap',
-  },
-  tab: {
-    padding: '12px 24px',
-    border: 'none',
-    borderRadius: '8px 8px 0 0',
-    background: 'rgba(255,255,255,0.2)',
-    color: '#fff',
-    cursor: 'pointer',
-    fontSize: '14px',
-    fontWeight: 500,
-    transition: 'all 0.2s',
-  },
-  tabActive: {
-    background: '#fff',
-    color: '#667eea',
-  },
-  main: {
-    flex: 1,
-    padding: '0 20px 40px',
-  },
-  card: {
-    background: '#fff',
-    borderRadius: '0 16px 16px 16px',
-    padding: '32px',
-    maxWidth: '600px',
-    margin: '0 auto',
-    boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
-  },
-  cardTitle: {
-    fontSize: '1.5rem',
-    fontWeight: 600,
-    marginBottom: '24px',
-    textAlign: 'center',
-    color: '#333',
-  },
-  randomGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '16px',
-    marginBottom: '24px',
-  },
-  randomItem: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    background: '#f5f5f5',
-    borderRadius: '12px',
-    padding: '12px',
-  },
-  exportPreview: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: '24px',
-    padding: '24px',
-    background: '#f5f5f5',
-    borderRadius: '12px',
-  },
-  exportButtons: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    gap: '12px',
-    marginBottom: '24px',
-  },
-  button: {
-    padding: '12px 24px',
-    border: 'none',
-    borderRadius: '8px',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    color: '#fff',
-    cursor: 'pointer',
-    fontSize: '14px',
-    fontWeight: 600,
-    transition: 'transform 0.2s',
-  },
-  buttonSecondary: {
-    padding: '12px 24px',
-    border: '2px solid #667eea',
-    borderRadius: '8px',
-    background: '#fff',
-    color: '#667eea',
-    cursor: 'pointer',
-    fontSize: '14px',
-    fontWeight: 600,
-  },
-  codeSection: {
-    marginTop: '24px',
-  },
-  codeTitle: {
-    fontSize: '14px',
-    fontWeight: 600,
-    marginBottom: '8px',
-    color: '#666',
-  },
-  code: {
-    background: '#1e1e1e',
-    color: '#d4d4d4',
-    padding: '16px',
-    borderRadius: '8px',
-    fontSize: '13px',
-    overflow: 'auto',
-    fontFamily: 'Monaco, Consolas, monospace',
-  },
-  footer: {
-    textAlign: 'center',
-    padding: '24px',
-    color: 'rgba(255,255,255,0.8)',
-    fontSize: '14px',
-  },
-  link: {
-    color: '#fff',
-    textDecoration: 'underline',
-  },
 }
 
 export default App

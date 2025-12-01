@@ -46,6 +46,10 @@ yarn add pinecone-avatars
 pnpm add pinecone-avatars
 ```
 
+```bash
+bun add pinecone-avatars
+```
+
 ## Quick Start
 
 ```tsx
