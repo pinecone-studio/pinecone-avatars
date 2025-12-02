@@ -3,44 +3,93 @@
  * @example 'babyBlue' | 'coralRed' | 'mintGreen'
  */
 export type BackgroundType =
-  | 'babyBlue' | 'coralRed' | 'darkGray' | 'lightGray'
-  | 'mintGreen' | 'pastelGreen' | 'peach' | 'softPink';
+  | "babyBlue"
+  | "coralRed"
+  | "darkGray"
+  | "lightGray"
+  | "mintGreen"
+  | "pastelGreen"
+  | "peach"
+  | "softPink";
 
 /**
  * Available skin tone options for the avatar.
  * @example 'softPeach' | 'warmBrown' | 'deepBrown'
  */
 export type SkinType =
-  | 'deepBrown' | 'warmBrown' | 'mediumTan' | 'softPeach' | 'lightCream';
+  | "deepBrown"
+  | "warmBrown"
+  | "mediumTan"
+  | "softPeach"
+  | "lightCream";
 
 /**
  * Available t-shirt color options for the avatar.
  * @example 'orange' | 'blue' | 'green'
  */
 export type TshirtType =
-  | 'amber' | 'blue' | 'charcoal' | 'green' | 'orange'
-  | 'pink' | 'raspberry' | 'white' | 'yellow';
+  | "amber"
+  | "blue"
+  | "charcoal"
+  | "green"
+  | "orange"
+  | "pink"
+  | "raspberry"
+  | "white"
+  | "yellow";
 
 /**
  * Available facial expression options for the avatar.
  * @example 'happy' | 'excited' | 'sleepy'
  */
 export type ExpressionType =
-  | 'angry' | 'blissful' | 'content' | 'dizzy' | 'excited'
-  | 'furious' | 'happy' | 'playful' | 'sad' | 'sideGlance'
-  | 'skeptical' | 'sleepy' | 'suspicious' | 'wink';
+  | "angry"
+  | "blissful"
+  | "content"
+  | "dizzy"
+  | "excited"
+  | "furious"
+  | "happy"
+  | "playful"
+  | "sad"
+  | "sideGlance"
+  | "skeptical"
+  | "sleepy"
+  | "suspicious"
+  | "wink";
 
 /**
  * Available hairstyle options for the avatar.
  * @example 'shortBuzz' | 'longStraight' | 'spaceBuns'
  */
 export type HairType =
-  | 'afroPuffs' | 'asymmetricBuns' | 'bob' | 'bobSidePart' | 'bowlCut'
-  | 'braids' | 'bunnyEars' | 'curlyHeadband' | 'curlyMessy' | 'curlyPigtails'
-  | 'curlyPuff' | 'fullCurly' | 'longAfro' | 'longPeak' | 'longStraight'
-  | 'messyArtistic' | 'pigtailBuns' | 'shortBuns' | 'shortBuzz' | 'shortCurly'
-  | 'sideBangs' | 'spaceBuns' | 'spikyEarmuffs' | 'tinyBun' | 'topKnot'
-  | 'wavyCenterPart' | 'wavyPuffs';
+  | "afroPuffs"
+  | "asymmetricBuns"
+  | "bob"
+  | "bobSidePart"
+  | "bowlCut"
+  | "braids"
+  | "bunnyEars"
+  | "curlyHeadband"
+  | "curlyMessy"
+  | "curlyPigtails"
+  | "curlyPuff"
+  | "fullCurly"
+  | "longAfro"
+  | "longPeak"
+  | "longStraight"
+  | "messyArtistic"
+  | "pigtailBuns"
+  | "shortBuns"
+  | "shortBuzz"
+  | "shortCurly"
+  | "sideBangs"
+  | "spaceBuns"
+  | "spikyEarmuffs"
+  | "tinyBun"
+  | "topKnot"
+  | "wavyCenterPart"
+  | "wavyPuffs";
 
 /**
  * Complete configuration object for an avatar's appearance.
@@ -111,34 +160,83 @@ export interface AvatarPickerProps {
 
 /** Array of all available background color options */
 export const BACKGROUNDS: BackgroundType[] = [
-  'babyBlue', 'coralRed', 'darkGray', 'lightGray',
-  'mintGreen', 'pastelGreen', 'peach', 'softPink'
+  "babyBlue",
+  "coralRed",
+  "darkGray",
+  "lightGray",
+  "mintGreen",
+  "pastelGreen",
+  "peach",
+  "softPink",
 ];
 
 /** Array of all available skin tone options */
 export const SKINS: SkinType[] = [
-  'deepBrown', 'warmBrown', 'mediumTan', 'softPeach', 'lightCream'
+  "deepBrown",
+  "warmBrown",
+  "mediumTan",
+  "softPeach",
+  "lightCream",
 ];
 
 /** Array of all available t-shirt color options */
 export const TSHIRTS: TshirtType[] = [
-  'amber', 'blue', 'charcoal', 'green', 'orange',
-  'pink', 'raspberry', 'white', 'yellow'
+  "amber",
+  "blue",
+  "charcoal",
+  "green",
+  "orange",
+  "pink",
+  "raspberry",
+  "white",
+  "yellow",
 ];
 
 /** Array of all available facial expression options */
 export const EXPRESSIONS: ExpressionType[] = [
-  'angry', 'blissful', 'content', 'dizzy', 'excited',
-  'furious', 'happy', 'playful', 'sad', 'sideGlance',
-  'skeptical', 'sleepy', 'suspicious', 'wink'
+  "angry",
+  "blissful",
+  "content",
+  "dizzy",
+  "excited",
+  "furious",
+  "happy",
+  "playful",
+  "sad",
+  "sideGlance",
+  "skeptical",
+  "sleepy",
+  "suspicious",
+  "wink",
 ];
 
 /** Array of all available hairstyle options */
 export const HAIRS: HairType[] = [
-  'afroPuffs', 'asymmetricBuns', 'bob', 'bobSidePart', 'bowlCut',
-  'braids', 'bunnyEars', 'curlyHeadband', 'curlyMessy', 'curlyPigtails',
-  'curlyPuff', 'fullCurly', 'longAfro', 'longPeak', 'longStraight',
-  'messyArtistic', 'pigtailBuns', 'shortBuns', 'shortBuzz', 'shortCurly',
-  'sideBangs', 'spaceBuns', 'spikyEarmuffs', 'tinyBun', 'topKnot',
-  'wavyCenterPart', 'wavyPuffs'
+  "afroPuffs",
+  "asymmetricBuns",
+  "bob",
+  "bobSidePart",
+  "bowlCut",
+  "braids",
+  "bunnyEars",
+  "curlyHeadband",
+  "curlyMessy",
+  "curlyPigtails",
+  "curlyPuff",
+  "fullCurly",
+  "longAfro",
+  "longPeak",
+  "longStraight",
+  "messyArtistic",
+  "pigtailBuns",
+  "shortBuns",
+  "shortBuzz",
+  "shortCurly",
+  "sideBangs",
+  "spaceBuns",
+  "spikyEarmuffs",
+  "tinyBun",
+  "topKnot",
+  "wavyCenterPart",
+  "wavyPuffs",
 ];

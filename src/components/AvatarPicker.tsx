@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useCallback, useEffect } from 'react';
-import { Avatar, generateRandomConfig, defaultConfig } from './Avatar';
+import { useState, useCallback, useEffect } from "react";
+import { Avatar, generateRandomConfig, defaultConfig } from "./Avatar";
 import {
   AvatarConfig,
   AvatarPickerProps,
@@ -9,79 +9,77 @@ import {
   SKINS,
   TSHIRTS,
   EXPRESSIONS,
-  HAIRS
-} from '../types';
+  HAIRS,
+} from "../types";
 
 const styles = {
   container: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '24px',
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
-  },
-  preview: {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '24px',
-    background: 'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)',
-    borderRadius: '16px'
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: "24px",
+    fontFamily: "inherit",
   },
   controls: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '20px'
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: "20px",
   },
   category: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '10px'
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: "10px",
   },
   label: {
-    fontSize: '13px',
+    fontSize: "13px",
     fontWeight: 600,
-    textTransform: 'uppercase' as const,
-    color: '#64748b',
-    letterSpacing: '0.05em'
+    textTransform: "uppercase" as const,
+    color: "#64748b",
+    letterSpacing: "0.05em",
   },
   options: {
-    display: 'flex',
-    flexWrap: 'wrap' as const,
-    gap: '8px'
+    display: "flex",
+    flexWrap: "wrap" as const,
+    gap: "8px",
   },
   option: {
-    padding: '8px 14px',
-    border: '2px solid #e2e8f0',
-    borderRadius: '10px',
-    background: '#fff',
-    cursor: 'pointer',
-    fontSize: '13px',
-    fontWeight: 500,
-    color: '#475569',
-    transition: 'all 0.2s ease',
-    outline: 'none'
+    padding: "6px",
+    border: "2px solid #e2e8f0",
+    borderRadius: "12px",
+    background: "#fff",
+    cursor: "pointer",
+    transition: "all 0.2s ease",
+    outline: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontFamily: "inherit",
   },
   optionHover: {
-    borderColor: '#c7d2fe',
-    background: '#f8fafc'
+    borderColor: "#13aeff",
+    background: "#f0f9ff",
   },
   optionSelected: {
-    borderColor: '#8b5cf6',
-    background: '#f3e8ff',
-    color: '#7c3aed'
+    borderColor: "#13aeff",
+    background: "#e0f4ff",
   },
   randomButton: {
-    padding: '14px 28px',
-    border: 'none',
-    borderRadius: '12px',
-    background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-    color: '#fff',
-    cursor: 'pointer',
-    fontSize: '15px',
+    padding: "14px 28px",
+    height: "50px",
+    border: "none",
+    borderTop: "1px solid rgba(255, 255, 255, 0.4)",
+    borderRadius: "16px",
+    background: "linear-gradient(135deg, #13aeff 0%, #0090db 100%)",
+    color: "#fff",
+    cursor: "pointer",
+    fontFamily: "inherit",
+    fontSize: "14px",
     fontWeight: 600,
-    transition: 'all 0.2s ease',
-    boxShadow: '0 4px 14px rgba(99, 102, 241, 0.4)',
-    marginTop: '8px'
-  }
+    letterSpacing: "0.025em",
+    transition: "all 0.15s ease",
+    boxShadow: "0 6px 0 0 #0078b8",
+    marginTop: "8px",
+    textShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+  },
 };
 
 interface CategorySelectorProps<T extends string> {
@@ -89,13 +87,15 @@ interface CategorySelectorProps<T extends string> {
   options: readonly T[];
   value: T;
   onChange: (value: T) => void;
+  renderOption: (option: T) => React.ReactNode;
 }
 
 function CategorySelector<T extends string>({
   label,
   options,
   value,
-  onChange
+  onChange,
+  renderOption,
 }: CategorySelectorProps<T>) {
   return (
     <div style={styles.category}>
@@ -105,9 +105,10 @@ function CategorySelector<T extends string>({
           <button
             key={option}
             type="button"
+            title={option}
             style={{
               ...styles.option,
-              ...(value === option ? styles.optionSelected : {})
+              ...(value === option ? styles.optionSelected : {}),
             }}
             onClick={() => onChange(option)}
             onMouseEnter={(e) => {
@@ -117,12 +118,12 @@ function CategorySelector<T extends string>({
             }}
             onMouseLeave={(e) => {
               if (value !== option) {
-                e.currentTarget.style.borderColor = '#e2e8f0';
-                e.currentTarget.style.background = '#fff';
+                e.currentTarget.style.borderColor = "#e2e8f0";
+                e.currentTarget.style.background = "#fff";
               }
             }}
           >
-            {option}
+            {renderOption(option)}
           </button>
         ))}
       </div>
@@ -153,7 +154,7 @@ function CategorySelector<T extends string>({
 export function AvatarPicker({
   value,
   onChange,
-  className
+  className,
 }: AvatarPickerProps) {
   const [config, setConfig] = useState<AvatarConfig>(value || defaultConfig);
 
@@ -170,7 +171,7 @@ export function AvatarPicker({
       setConfig(newConfig);
       onChange?.(newConfig);
     },
-    [config, onChange]
+    [config, onChange],
   );
 
   const handleRandom = useCallback(() => {
@@ -181,44 +182,51 @@ export function AvatarPicker({
 
   return (
     <div style={styles.container} className={className}>
-      <div style={styles.preview}>
-        <Avatar {...config} size={180} />
-      </div>
-
       <div style={styles.controls}>
         <CategorySelector
           label="Background"
           options={BACKGROUNDS}
           value={config.background}
-          onChange={(v) => updateConfig('background', v)}
+          onChange={(v) => updateConfig("background", v)}
+          renderOption={(bg) => (
+            <Avatar {...config} background={bg} size={48} />
+          )}
         />
 
         <CategorySelector
           label="Skin"
           options={SKINS}
           value={config.skin}
-          onChange={(v) => updateConfig('skin', v)}
+          onChange={(v) => updateConfig("skin", v)}
+          renderOption={(skin) => <Avatar {...config} skin={skin} size={48} />}
         />
 
         <CategorySelector
           label="T-Shirt"
           options={TSHIRTS}
           value={config.tshirt}
-          onChange={(v) => updateConfig('tshirt', v)}
+          onChange={(v) => updateConfig("tshirt", v)}
+          renderOption={(tshirt) => (
+            <Avatar {...config} tshirt={tshirt} size={48} />
+          )}
         />
 
         <CategorySelector
           label="Expression"
           options={EXPRESSIONS}
           value={config.expression}
-          onChange={(v) => updateConfig('expression', v)}
+          onChange={(v) => updateConfig("expression", v)}
+          renderOption={(expression) => (
+            <Avatar {...config} expression={expression} size={48} />
+          )}
         />
 
         <CategorySelector
           label="Hair"
           options={HAIRS}
           value={config.hair}
-          onChange={(v) => updateConfig('hair', v)}
+          onChange={(v) => updateConfig("hair", v)}
+          renderOption={(hair) => <Avatar {...config} hair={hair} size={48} />}
         />
 
         <button
@@ -226,12 +234,22 @@ export function AvatarPicker({
           style={styles.randomButton}
           onClick={handleRandom}
           onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(99, 102, 241, 0.5)';
+            e.currentTarget.style.transform = "translateY(-2px)";
+            e.currentTarget.style.boxShadow = "0 8px 0 0 #0078b8";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 4px 14px rgba(99, 102, 241, 0.4)';
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 6px 0 0 #0078b8";
+          }}
+          onMouseDown={(e) => {
+            e.currentTarget.style.transform = "translateY(4px)";
+            e.currentTarget.style.boxShadow = "0 0 0 0 #0078b8";
+            e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)";
+          }}
+          onMouseUp={(e) => {
+            e.currentTarget.style.transform = "translateY(-2px)";
+            e.currentTarget.style.boxShadow = "0 8px 0 0 #0078b8";
+            e.currentTarget.style.color = "#fff";
           }}
         >
           Randomize

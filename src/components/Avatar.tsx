@@ -1,9 +1,17 @@
-import { AvatarProps, AvatarConfig, BACKGROUNDS, SKINS, TSHIRTS, EXPRESSIONS, HAIRS } from '../types';
-import { backgroundComponents } from './svg/background';
-import { skinComponents } from './svg/skin';
-import { tshirtComponents } from './svg/tshirt';
-import { expressionComponents } from './svg/expression';
-import { hairComponents } from './svg/hair';
+import {
+  AvatarProps,
+  AvatarConfig,
+  BACKGROUNDS,
+  SKINS,
+  TSHIRTS,
+  EXPRESSIONS,
+  HAIRS,
+} from "../types";
+import { backgroundComponents } from "./svg/background";
+import { skinComponents } from "./svg/skin";
+import { tshirtComponents } from "./svg/tshirt";
+import { expressionComponents } from "./svg/expression";
+import { hairComponents } from "./svg/hair";
 
 /**
  * Default avatar configuration used when no props are provided.
@@ -15,11 +23,11 @@ import { hairComponents } from './svg/hair';
  * ```
  */
 export const defaultConfig: AvatarConfig = {
-  background: 'babyBlue',
-  skin: 'softPeach',
-  tshirt: 'orange',
-  expression: 'happy',
-  hair: 'shortBuzz'
+  background: "babyBlue",
+  skin: "softPeach",
+  tshirt: "orange",
+  expression: "happy",
+  hair: "shortBuzz",
 };
 
 /**
@@ -59,7 +67,7 @@ export function Avatar({
   skin = defaultConfig.skin,
   tshirt = defaultConfig.tshirt,
   expression = defaultConfig.expression,
-  hair = defaultConfig.hair
+  hair = defaultConfig.hair,
 }: AvatarProps) {
   return (
     <svg
@@ -113,6 +121,6 @@ export function generateRandomConfig(): AvatarConfig {
     skin: randomItem(SKINS),
     tshirt: randomItem(TSHIRTS),
     expression: randomItem(EXPRESSIONS),
-    hair: randomItem(HAIRS)
+    hair: randomItem(HAIRS),
   };
 }

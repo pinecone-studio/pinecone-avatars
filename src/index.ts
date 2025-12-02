@@ -1,6 +1,10 @@
 // Components
-export { Avatar, generateRandomConfig, defaultConfig } from './components/Avatar';
-export { AvatarPicker } from './components/AvatarPicker';
+export {
+  Avatar,
+  generateRandomConfig,
+  defaultConfig,
+} from "./components/Avatar";
+export { AvatarPicker } from "./components/AvatarPicker";
 
 // Export utilities
 export {
@@ -8,8 +12,8 @@ export {
   generateBase64,
   generatePngBase64,
   downloadSvg,
-  downloadPng
-} from './utils/export';
+  downloadPng,
+} from "./utils/export";
 
 // Types
 export type {
@@ -20,14 +24,8 @@ export type {
   SkinType,
   TshirtType,
   ExpressionType,
-  HairType
-} from './types';
+  HairType,
+} from "./types";
 
 // Constants
-export {
-  BACKGROUNDS,
-  SKINS,
-  TSHIRTS,
-  EXPRESSIONS,
-  HAIRS
-} from './types';
+export { BACKGROUNDS, SKINS, TSHIRTS, EXPRESSIONS, HAIRS } from "./types";
