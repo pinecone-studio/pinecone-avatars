@@ -23,7 +23,10 @@
     "preview": "vite preview",
     "prepublishOnly": "npm run build",
     "demo": "npm run build && cd demo && npm install && npm run dev",
-    "demo:install": "cd demo && npm install"
+    "demo:install": "cd demo && npm install",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [
     "react",
@@ -52,14 +55,19 @@
     "react-dom": ">=17.0.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "@vitest/coverage-v8": "^4.0.14",
+    "jsdom": "^27.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "typescript": "^5.9.3",
     "vite": "^7.2.6",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.14"
   }
 }
