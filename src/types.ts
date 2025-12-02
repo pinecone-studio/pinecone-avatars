@@ -14,14 +14,9 @@ export type BackgroundType =
 
 /**
  * Available skin tone options for the avatar.
- * @example 'softPeach' | 'warmBrown' | 'deepBrown'
+ * @example 'softPeach'
  */
-export type SkinType =
-  | "deepBrown"
-  | "warmBrown"
-  | "mediumTan"
-  | "softPeach"
-  | "lightCream";
+export type SkinType = "softPeach";
 
 /**
  * Available t-shirt color options for the avatar.
@@ -40,23 +35,22 @@ export type TshirtType =
 
 /**
  * Available facial expression options for the avatar.
- * @example 'happy' | 'excited' | 'sleepy'
+ * @example 'happy' | 'laughing' | 'sleepy'
  */
 export type ExpressionType =
   | "angry"
-  | "blissful"
-  | "content"
-  | "dizzy"
-  | "excited"
+  | "focused"
   | "furious"
   | "happy"
-  | "playful"
+  | "laughing"
   | "sad"
+  | "shocked"
   | "sideGlance"
-  | "skeptical"
   | "sleepy"
+  | "starry"
   | "suspicious"
-  | "wink";
+  | "tired"
+  | "worried";
 
 /**
  * Available hairstyle options for the avatar.
@@ -171,13 +165,7 @@ export const BACKGROUNDS: BackgroundType[] = [
 ];
 
 /** Array of all available skin tone options */
-export const SKINS: SkinType[] = [
-  "deepBrown",
-  "warmBrown",
-  "mediumTan",
-  "softPeach",
-  "lightCream",
-];
+export const SKINS: SkinType[] = ["softPeach"];
 
 /** Array of all available t-shirt color options */
 export const TSHIRTS: TshirtType[] = [
@@ -195,19 +183,18 @@ export const TSHIRTS: TshirtType[] = [
 /** Array of all available facial expression options */
 export const EXPRESSIONS: ExpressionType[] = [
   "angry",
-  "blissful",
-  "content",
-  "dizzy",
-  "excited",
+  "focused",
   "furious",
   "happy",
-  "playful",
+  "laughing",
   "sad",
+  "shocked",
   "sideGlance",
-  "skeptical",
   "sleepy",
+  "starry",
   "suspicious",
-  "wink",
+  "tired",
+  "worried",
 ];
 
 /** Array of all available hairstyle options */

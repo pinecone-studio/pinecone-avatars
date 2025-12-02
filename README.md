@@ -13,9 +13,9 @@ A customizable React avatar picker library with 60+ unique combinations. Generat
 ## Features
 
 - 8 background colors
-- 5 skin tones
+- 1 skin tone
 - 27 hairstyles
-- 14 expressions
+- 13 expressions
 - 9 t-shirt colors
 - Fully typed with TypeScript
 - Export to SVG, Base64, or PNG
@@ -226,7 +226,7 @@ export function DownloadButton({ config }) {
 
 ### Skin (`SkinType`)
 
-`deepBrown` | `warmBrown` | `mediumTan` | `softPeach` | `lightCream`
+`softPeach`
 
 ### T-Shirt (`TshirtType`)
 
@@ -234,7 +234,7 @@ export function DownloadButton({ config }) {
 
 ### Expression (`ExpressionType`)
 
-`angry` | `blissful` | `content` | `dizzy` | `excited` | `furious` | `happy` | `playful` | `sad` | `sideGlance` | `skeptical` | `sleepy` | `suspicious` | `wink`
+`angry` | `focused` | `furious` | `happy` | `laughing` | `sad` | `shocked` | `sideGlance` | `sleepy` | `starry` | `suspicious` | `tired` | `worried`
 
 ### Hair (`HairType`)
 

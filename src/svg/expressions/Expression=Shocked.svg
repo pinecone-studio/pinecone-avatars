@@ -1,0 +1,25 @@
+<svg width="474" height="474" viewBox="0 0 474 474" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle opacity="0.3" cx="313.051" cy="278.193" r="26.1933" fill="#FF7472"/>
+<circle opacity="0.3" cx="151.193" cy="278.193" r="26.1933" fill="#FF7472"/>
+<mask id="mask0_2726_2895" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="151" y="208" width="74" height="74">
+<rect x="151" y="208" width="73.52" height="73.5191" rx="36.7595" fill="white"/>
+</mask>
+<g mask="url(#mask0_2726_2895)">
+<rect x="147" y="203" width="82" height="84" rx="41" fill="white"/>
+<path d="M191.5 208C210.002 208 225 222.998 225 241.5C225 260.002 210.002 275 191.5 275C172.998 275 158 260.002 158 241.5C158 222.998 172.998 208 191.5 208Z" fill="black"/>
+<path d="M208.5 255C207.766 256.769 206.689 258.376 205.332 259.73C203.976 261.084 202.365 262.158 200.592 262.89C198.819 263.623 196.919 264 195 264" stroke="white" stroke-width="6" stroke-linecap="round"/>
+<circle cx="177.189" cy="225" r="5" fill="white"/>
+</g>
+<mask id="mask1_2726_2895" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="236" y="208" width="75" height="75">
+<rect x="236.623" y="208.688" width="73.52" height="73.5191" rx="36.7595" fill="white"/>
+</mask>
+<g mask="url(#mask1_2726_2895)">
+<rect x="231" y="202" width="83" height="87" rx="41.5" fill="white"/>
+<path d="M270.5 208C289.002 208 304 222.998 304 241.5C304 260.002 289.002 275 270.5 275C251.998 275 237 260.002 237 241.5C237 222.998 251.998 208 270.5 208Z" fill="black"/>
+<path d="M287.5 255C286.766 256.769 285.689 258.376 284.332 259.73C282.976 261.084 281.365 262.158 279.592 262.89C277.819 263.623 275.919 264 274 264" stroke="white" stroke-width="6" stroke-linecap="round"/>
+<circle cx="256.189" cy="225" r="5" fill="white"/>
+</g>
+<path d="M248.839 302.059C238.376 303.789 227.696 303.755 217.244 301.958" stroke="#EFA076" stroke-width="6" stroke-linecap="round"/>
+<path d="M215.406 293.181C216.511 298.883 215.46 304.792 212.457 309.764" stroke="#EFA076" stroke-width="6" stroke-linecap="round"/>
+<path d="M250.353 293.181C249.249 298.883 250.3 304.792 253.302 309.764" stroke="#EFA076" stroke-width="6" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,37 @@
+<svg width="474" height="474" viewBox="0 0 474 474" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle opacity="0.3" cx="161.193" cy="278.051" r="26.1933" fill="#FF7472"/>
+<circle opacity="0.3" cx="313.051" cy="278.193" r="26.1933" fill="#FF7472"/>
+<path d="M179.162 198C189.198 198 198.176 193.337 204.162 186" stroke="#EFA076" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M179.162 198C189.198 198 198.176 193.337 204.162 186" stroke="#EFA076" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M282 198C271.964 198 262.987 193.337 257 186" stroke="#EFA076" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M282 198C271.964 198 262.987 193.337 257 186" stroke="#EFA076" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<mask id="mask0_2726_2523" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="163" y="208" width="57" height="75">
+<path d="M191.323 208.74C175.83 208.74 163.271 221.301 163.271 236.794V254.206C163.271 269.699 175.83 282.26 191.323 282.26C206.817 282.26 219.377 269.699 219.377 254.206V236.794C219.377 221.301 206.817 208.74 191.323 208.74Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_2726_2523)">
+<rect width="56.1067" height="73.5191" rx="28.0533" transform="matrix(-1 0 0 1 219.377 208.74)" fill="white"/>
+<path d="M197.646 226.31C194.656 226.31 191.807 226.914 189.215 228.006C189.819 229.182 190.162 230.521 190.162 231.942C190.162 236.612 186.474 240.397 181.926 240.397C180.41 240.397 178.992 239.974 177.772 239.241C176.58 241.931 175.915 244.908 175.915 248.04V261.528C175.915 273.53 185.644 283.26 197.646 283.26C209.647 283.26 219.377 273.53 219.377 261.528V248.04C219.377 236.038 209.647 226.31 197.646 226.31Z" fill="black"/>
+</g>
+<mask id="mask1_2726_2523" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="244" y="208" width="57" height="75">
+<path d="M272.677 208.688C288.17 208.689 300.729 221.249 300.729 236.742V254.154C300.729 269.648 288.17 282.208 272.677 282.208C257.183 282.208 244.623 269.648 244.623 254.154V236.742C244.623 221.249 257.183 208.688 272.677 208.688Z" fill="white"/>
+</mask>
+<g mask="url(#mask1_2726_2523)">
+<rect x="244.623" y="208.688" width="56.1067" height="73.5191" rx="28.0533" fill="white"/>
+<path d="M266.354 226.258C263.364 226.258 260.515 226.862 257.923 227.954C258.527 229.13 258.87 230.469 258.87 231.891C258.87 236.56 255.182 240.346 250.634 240.346C249.118 240.346 247.7 239.923 246.48 239.189C245.288 241.88 244.623 244.856 244.623 247.988V261.477C244.623 273.478 254.352 283.208 266.354 283.208C278.355 283.208 288.085 273.478 288.085 261.477V247.988C288.085 235.987 278.355 226.258 266.354 226.258Z" fill="black"/>
+</g>
+<g filter="url(#filter0_i_2726_2523)">
+<path d="M254.023 322.263C256.778 325.804 256.164 330.982 252.194 333.072C245.714 336.484 238.475 338.319 231.073 338.369C223.671 338.419 216.408 336.683 209.882 333.359C205.885 331.322 205.201 326.153 207.908 322.576C210.614 318.998 215.696 318.418 219.871 320.06C223.38 321.44 227.143 322.15 230.963 322.124C234.783 322.098 238.536 321.337 242.026 319.91C246.179 318.211 251.268 318.723 254.023 322.263Z" fill="#EFA076"/>
+</g>
+<circle opacity="0.2" cx="237" cy="279" r="5" fill="black"/>
+<defs>
+<filter id="filter0_i_2726_2523" x="206.282" y="318.973" width="49.4314" height="19.3975" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="-4" dy="3"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.930198 0 0 0 0 0.537217 0 0 0 0 0.328291 0 0 0 1 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_2726_2523"/>
+</filter>
+</defs>
+</svg>

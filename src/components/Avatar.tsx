@@ -53,7 +53,7 @@ export const defaultConfig: AvatarConfig = {
  * <Avatar
  *   size={100}
  *   background="mintGreen"
- *   skin="warmBrown"
+ *   skin="softPeach"
  *   expression="happy"
  *   hair="spaceBuns"
  * />
