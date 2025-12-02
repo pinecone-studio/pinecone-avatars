@@ -276,8 +276,6 @@ console.log(HAIRS);       // ['afroPuffs', 'asymmetricBuns', ...]
 
 Built with love by [Pinecone](https://pinecone.mn/) - A software development company based in Mongolia.
 
-[![Pinecone](https://pinecone.mn/logo.svg)](https://pinecone.mn/)
-
 ## License
 
 MIT
