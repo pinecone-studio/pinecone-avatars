@@ -6,7 +6,7 @@ A customizable React avatar picker library with 60+ unique combinations. Generat
 ![license](https://img.shields.io/npm/l/pinecone-avatars)
 ![bundle size](https://img.shields.io/bundlephobia/minzip/pinecone-avatars)
 
-**[Live Demo](https://temuulennibno.github.io/pinecone-avatars/)**
+**[Live Demo](https://pinecone-studio.github.io/pinecone-avatars/)**
 
 ## Features
 

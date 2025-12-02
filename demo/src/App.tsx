@@ -95,7 +95,7 @@ function App() {
               npm
             </a>
             <a
-              href="https://github.com/temuulennibno/pinecone-avatars"
+              href="https://github.com/pinecone-studio/pinecone-avatars"
               className="badge"
             >
               <svg
@@ -338,7 +338,7 @@ function App() {
           <span className="footer-sep">•</span>
           <a href="https://pinecone.mn/">pinecone.mn</a>
           <span className="footer-sep">•</span>
-          <a href="https://github.com/temuulennibno/pinecone-avatars">
+          <a href="https://github.com/pinecone-studio/pinecone-avatars">
             GitHub
           </a>
           <span className="footer-sep">•</span>
